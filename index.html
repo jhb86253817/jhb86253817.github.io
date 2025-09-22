@@ -1,85 +1,438 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>
-Haibo Jin
-</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
-<style>
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haibo Jin | Senior Algorithm Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(52, 152, 219, 0.3) 0%, rgba(44, 62, 80, 0.7) 100%);
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            flex-wrap: wrap;
+        }
+
+        .icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .local-icon {
+            width: 24px; /* Adjust size as needed */
+            height: 24px;
+            object-fit: contain;
+            vertical-align: middle;
+        }
+
+        .separator {
+            margin: 0 25px; /* 25px left and right margin */
+            font-weight: normal;
+            opacity: 0.6;
+        }
+
+        /* For mobile responsiveness */
+        @media (max-width: 768px) {
+            .local-icon {
+               width: 20px;
+               height: 20px;
+             }
+
+             .separator {
+                margin: 0 20px;
+             }
+        }
+
+        .content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin: -15px auto 50px;
+            position: relative;
+            padding: 2rem;
+            max-width: 1100px;
+        }
+        
+        .bio-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .profile-img {
+            flex: 0 0 250px;
+        }
+        
+        .profile-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .profile-img img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .bio-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+            font-weight: 600;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .contact-info i {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+        
+        .publication-list {
+            list-style: none;
+            counter-reset: publication-counter;
+        }
+        
+        .publication-list li {
+            counter-increment: publication-counter;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: var(--transition);
+            position: relative;
+            padding-left: 70px;
+        }
+        
+        .publication-list li:hover {
+            background: #e8f4fc;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .publication-list li::before {
+            content: "[" counter(publication-counter) "]";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .publication-title {
+            font-weight: 600;
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .publication-authors {
+            color: #555;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .publication-venue {
+            font-style: italic;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .publication-links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .publication-links a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .activities-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .activities-list li {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .activities-list li:hover {
+            background: #e8f4fc;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .activities-list h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: white;
+            background: var(--primary);
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .bio-section {
+                flex-direction: column;
+            }
+            
+            .profile-img {
+                flex: 0 0 auto;
+                margin: 0 auto;
+                max-width: 250px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content {
+                margin: -30px 20px 30px;
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1>Haibo Jin</h1>
+            <p class="subtitle">
+                <span class="icon-wrapper">
+                    Engineer@Alibaba
+                    <img src="me/alibaba.png" alt="Alibaba" class="local-icon">
+                </span>
+                <span class="separator">|</span>
+                <span class="icon-wrapper">
+                    PhD@HKUST
+                    <img src="me/hkust.png" alt="HKUST" class="local-icon">
+                </span>
+            </p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <section class="bio-section">
+                <div class="profile-img">
+                    <img src="me/haibo.jpg" alt="Haibo Jin">
+                </div>
+                <div class="bio-text">
+                    <h2>Bio</h2>
+                    <p>I am a senior algorithm engineer at Alibaba <b>DAMO Academy</b>, Hangzhou. I obtained my PhD from the Hong Kong University of Science and Technology (<b>HKUST</b>) in 2025, under the supervision of Prof. Hao Chen. Previously, I was an algorithm engineer at the Inception Institute of Artificial Intelligence (<b>IIAI</b>) in Abu Dhabi from 2019 to 2021.</p>
+                    <p>My research interests include <b>computer vision, medical image analysis, and vision-language modeling</b>.</p>
 
-<body bgcolor="#ffffff" text="#000000" style="margin-left: 70px; margin-right: 70px; font-size:120%">
-<h1 align="center" style="margin-top: 20px">Haibo Jin</h1>
-<div style="max-width: 2200px"> <hr /> </div>
-
-<table>
-<tr>
-<td>
-    <!--<img src="me/haibo.jpg" height="192" width="180" style="margin: 30px">-->
-<img src="me/haibo.jpg" height="192" width="180" >
-</td>
-
-<td style="font-size:120%; padding-left: 50px; padding-right: 300px; text-align: justify;">
-<h2>Bio</h2>
-I am a senior algorithm engineer at Alibaba <b>DAMO Academy</b>, Hangzhou. I obtained my PhD from the Hong Kong University of Science and Technology (<b>HKUST</b>) in 2025, under the supervision of Prof. Hao Chen. Previously, I was an algorithm engineer at the Inception Institute of Artificial Intelligence (<b>IIAI</b>) in Abu Dhabi from 2019 to 2021. My research interests include <b>computer vision, medical image analysis, and vision-language modeling</b>.
-</td>
-</tr>
-</table>
-
-<br>
-<b>Email</b>: haibo.nick.jin@gmail.com
-
-<h2>Selected Publications</h2>
-<ol style="padding-left: 1.5em;">
-  <li style="list-style: none; margin-bottom: 0.5em;">
-    <span style="position: absolute; margin-left: -1.5em;">[1]</span>
-    A Chain of Diagnosis Framework for Accurate and Explainable Radiology Report Generation.[<a href="https://arxiv.org/abs/2508.09566">pdf</a>]<br>
-    <b>Haibo Jin</b>, Haoxuan Che, Sunan He and Hao Chen.<br>
-    <i>IEEE Transactions on Medical Imaging (<b>TMI</b>)</i>, 2025.
-  </li>
-  <li style="list-style: none; margin-bottom: 0.5em;">
-    <span style="position: absolute; margin-left: -1.5em;">[2]</span>
-    LLM-driven Medical Report Generation via Communication-efficient Heterogeneous Federated Learning.[<a href="https://arxiv.org/abs/2506.17562">pdf</a>]<br>
-    Haoxuan Che<sup>*</sup>, <b>Haibo Jin<sup>*</sup></b>, Zhengrui Guo<sup>*</sup>, Yi Lin, Cheng Jin and Hao Chen.<br>
-    <i>IEEE Transactions on Medical Imaging (<b>TMI</b>)</i>, 2025.
-  </li>
-  <li style="list-style: none; margin-bottom: 0.5em;">
-    <span style="position: absolute; margin-left: -1.5em;">[3]</span>
-    PromptMRG: Diagnosis-Driven Prompts for Medical Report Generation.[<a href="https://arxiv.org/abs/2308.12604">pdf</a>][<a href="https://github.com/jhb86253817/PromptMRG">code</a>]<br>
-    <b>Haibo Jin</b>, Haoxuan Che, Yi Lin and Hao Chen.<br>
-    <i>The 38th Annual AAAI Conference on Artificial Intelligence (<b>AAAI</b>)</i>, 2024.
-  </li>
-  <li style="list-style: none; margin-bottom: 0.5em;">
-    <span style="position: absolute; margin-left: -1.5em;">[4]</span>
-    Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild.[<a href="https://arxiv.org/abs/2003.03771">pdf</a>][<a href="https://github.com/jhb86253817/PIPNet">code</a>]<br>
-    <b>Haibo Jin</b>, Shengcai Liao and Ling Shao.<br>
-    <i>International Journal of Computer Vision (<b>IJCV</b>)</i>, 2021.
-  </li>
-  <li style="list-style: none; margin-bottom: 0.5em;">
-    <span style="position: absolute; margin-left: -1.5em;">[5]</span>
-    Rethinking Self-training for Semi-supervised Landmark Detection: A Selection-free Approach.[<a href="https://arxiv.org/abs/2404.04556">pdf</a>][<a href="https://github.com/jhb86253817/STLD">code</a>]<br>
-    <b>Haibo Jin<sup>*</sup></b>, Haoxuan Che<sup>*</sup> and Hao Chen.<br>
-    <i>IEEE Transactions on Image Processing (<b>TIP</b>)</i>, 2024.
-  </li>
-  <li style="list-style: none; margin-bottom: 0.5em;">
-    <span style="position: absolute; margin-left: -1.5em;">[6]</span>
-    Unsupervised Domain Adaptation for Anatomical Landmark Detection.[<a href="https://arxiv.org/abs/2308.13286">pdf</a>][<a href="https://github.com/jhb86253817/UDA_Med_Landmark">code</a>]<br>
-    <b>Haibo Jin</b>, Haoxuan Che and Hao Chen.<br>
-    <i>International Conference on Medical Image Computing and Computer Assisted Intervention (<b>MICCAI</b>)</i>, 2023.
-  </li>
-  <li style="list-style: none; margin-bottom: 0.5em;">
-    <span style="position: absolute; margin-left: -1.5em;">[7]</span>
-    Learning Lightweight Face Detector with Knowledge Distillation.[<a href="http://www.cbsr.ia.ac.cn/users/sfzhang/files/FBI.pdf">pdf</a>]<br>
-    <b>Haibo Jin</b>, Shifeng Zhang, Xiangyu Zhu, Yinhang Tang, Zhen Lei and Stan Z. Li.<br>
-    <i>International Conference on Biometrics (<b>ICB</b>)</i>, Oral, 2019.
-  </li>
-</ol>
-
-<h2>Professional Activities</h2>
-<b>Reviewer of</b>
-<ul style="list-style-type: square;"> <!-- ■ (Square) -->
-  <li>Conferences: CVPR (2023, 2024, 2026), ECCV (2022, 2024), ICCV (2023), AAAI (2024, 2025)</li>
-  <li>Journals: TPAMI, TIP, TMI, MIA, PR, NeuroComputing</li>
-</ul>
-
+                    <div class="contact-info">
+                      <div class="contact-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <a href="https://scholar.google.com/citations?user=sptbC3EAAAAJ&hl=en" target="_blank"><b>Google Scholar</b></a>
+                      </div>
+                      <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/jhb86253817" target="_blank"><b>GitHub</b></a>
+                      </div>
+                      <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span><b>Email</b>: haibo.nick.jin@gmail.com</span>
+                      </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Selected Publications</h2>
+                <ol class="publication-list">
+                    <li>
+                        <span class="publication-title">A Chain of Diagnosis Framework for Accurate and Explainable Radiology Report Generation.</span>
+                        <span class="publication-authors"><b>Haibo Jin</b>, Haoxuan Che, Sunan He and Hao Chen.</span>
+                        <span class="publication-venue">IEEE Transactions on Medical Imaging (<b>TMI</b>), 2025.</span>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2508.09566"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="publication-title">LLM-driven Medical Report Generation via Communication-efficient Heterogeneous Federated Learning.</span>
+                        <span class="publication-authors">Haoxuan Che<sup>*</sup>, <b>Haibo Jin<sup>*</sup></b>, Zhengrui Guo<sup>*</sup>, Yi Lin, Cheng Jin and Hao Chen.</span>
+                        <span class="publication-venue">IEEE Transactions on Medical Imaging (<b>TMI</b>), 2025.</span>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2506.17562"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="publication-title">PromptMRG: Diagnosis-Driven Prompts for Medical Report Generation.</span>
+                        <span class="publication-authors"><b>Haibo Jin</b>, Haoxuan Che, Yi Lin and Hao Chen.</span>
+                        <span class="publication-venue">The 38th Annual AAAI Conference on Artificial Intelligence (<b>AAAI</b>), 2024.</span>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2308.12604"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="https://github.com/jhb86253817/PromptMRG"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="publication-title">Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild.</span>
+                        <span class="publication-authors"><b>Haibo Jin</b>, Shengcai Liao and Ling Shao.</span>
+                        <span class="publication-venue">International Journal of Computer Vision (<b>IJCV</b>), 2021.</span>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2003.03771"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="https://github.com/jhb86253817/PIPNet"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="publication-title">Rethinking Self-training for Semi-supervised Landmark Detection: A Selection-free Approach.</span>
+                        <span class="publication-authors"><b>Haibo Jin<sup>*</sup></b>, Haoxuan Che<sup>*</sup> and Hao Chen.</span>
+                        <span class="publication-venue">IEEE Transactions on Image Processing (<b>TIP</b>), 2024.</span>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2404.04556"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="https://github.com/jhb86253817/STLD"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="publication-title">Unsupervised Domain Adaptation for Anatomical Landmark Detection.</span>
+                        <span class="publication-authors"><b>Haibo Jin</b>, Haoxuan Che and Hao Chen.</span>
+                        <span class="publication-venue">International Conference on Medical Image Computing and Computer Assisted Intervention (<b>MICCAI</b>), 2023.</span>
+                        <div class="publication-links">
+                            <a href="https://arxiv.org/abs/2308.13286"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="https://github.com/jhb86253817/UDA_Med_Landmark"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="publication-title">Learning Lightweight Face Detector with Knowledge Distillation.</span>
+                        <span class="publication-authors"><b>Haibo Jin</b>, Shifeng Zhang, Xiangyu Zhu, Yinhang Tang, Zhen Lei and Stan Z. Li.</span>
+                        <span class="publication-venue">International Conference on Biometrics (<b>ICB</b>), Oral, 2019.</span>
+                        <div class="publication-links">
+                            <a href="http://www.cbsr.ia.ac.cn/users/sfzhang/files/FBI.pdf"><i class="fas fa-file-pdf"></i> PDF</a>
+                        </div>
+                    </li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Professional Activities</h2>
+                <ul class="activities-list">
+                    <li>
+                        <h3>Conference Reviewer</h3>
+                        <p>CVPR (2023, 2024, 2026), ECCV (2022, 2024), ICCV (2023), AAAI (2024, 2025)</p>
+                    </li>
+                    <li>
+                        <h3>Journal Reviewer</h3>
+                        <p>TPAMI, TIP, TMI, MIA, PR, NeuroComputing</p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Haibo Jin. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
 </html>
